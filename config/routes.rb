@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'csv_importer'
   get 'csv_importer' => 'csv_importer#index'
   post 'csv_importer/import_csv'
 

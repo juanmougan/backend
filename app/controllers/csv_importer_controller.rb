@@ -11,10 +11,12 @@ class CsvImporterController < ApplicationController
   	#	raise RuntimeError, "Missing filename"
   	#end
 
-  	Rails.logger.debug params.inspect
+  	# Rails.logger.debug params.inspect
 
-  	path = get_file_name(params[:filename], params[:input_file])
-  	CsvImporterJob.perform_later(path)
+    #path = get_file_name(params[:filename], params[:input_file])
+    path = get_file_name(params[:input_file].original_filename, params[:input_file])
+  	result = CsvImporterJob.perform_later(path)
+    puts "\n\n\n\n\n\nBack in the controller\n"
 
   	# TODO can the job return a Students Hash? And use it here to create the Students?
   end
