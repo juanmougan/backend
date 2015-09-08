@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # get 'csv_importer'
+  get 'csv_importer'
+  get 'csv_importer' => 'csv_importer#index'
   post 'csv_importer/import_csv'
 
   # The priority is based upon order of creation: first created -> highest priority.
