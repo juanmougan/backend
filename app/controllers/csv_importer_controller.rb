@@ -19,6 +19,8 @@ class CsvImporterController < ApplicationController
     puts "\n\n\n\n\n\nBack in the controller\n"
 
   	# TODO can the job return a Students Hash? And use it here to create the Students?
+    # redirect_to root_url, notice: "CSV file imported."    # TODO here I should redirect to Students/index
+
   end
 
   private
