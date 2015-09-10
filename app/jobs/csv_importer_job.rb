@@ -33,29 +33,20 @@ class CsvImporterJob < ActiveJob::Base
 	puts "\n\n\n\n\n\Parse took: #{end_time - start_time} seconds"
 	pp student_hash
 
-	puts "\n\n\n\n\n\About to insert..."
-	pp student_hash[1]
-
-	# TODO store the Hash in the DB
-
-	# TODO iterate all the Students
-	someStudent = student_hash[1]
-#	hash = {
-#		"csv_id"=>someStudent.id,
-#		"first_name"=>someStudent.first_name,
-#		"last_name"=>someStudent.last_name,
-#		"file_number"=>someStudent.file_number,
-#		"career"=>someStudent.career
-#	}
-	flat_student = FlatStudent.new
-	flat_student.csv_id = someStudent.id
-	flat_student.first_name = someStudent.first_name
-	flat_student.last_name = someStudent.last_name
-	flat_student.file_number = someStudent.file_number
-	flat_student.career = someStudent.career
-	puts "\n\nObject to be inserted..."
-	pp flat_student
-	puts flat_student.save!	# TODO error handling here. Raise an exception?
+	# Store the Hash in the DB
+	# TODO refactor - extract to another method
+	student_hash.keys.each do |k|
+		someStudent = student_hash[k]
+		flat_student = FlatStudent.new
+		flat_student.csv_id = someStudent.id
+		flat_student.first_name = someStudent.first_name
+		flat_student.last_name = someStudent.last_name
+		flat_student.file_number = someStudent.file_number
+		flat_student.career = someStudent.career
+		puts "\n\nObject to be inserted..."
+		pp flat_student
+		puts flat_student.save!	# TODO error handling here. Raise an exception?
+	end
 
   end
 end
