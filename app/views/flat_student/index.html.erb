@@ -1,0 +1,24 @@
+<h1>Listing FlatStudents</h1>
+<table>
+  <thead>
+    <tr>
+      <th>CSV ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>File Number</th>
+      <th>Career</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flat_students.each do |flat_student| %>
+      <tr>
+        <td><%= flat_student.csv_id %></td>
+        <td><%= flat_student.first_name %></td>
+        <td><%= flat_student.last_name %></td>
+        <td><%= flat_student.file_number %></td>
+        <td><%= flat_student.career %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

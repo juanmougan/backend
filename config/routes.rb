@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'flat_student/index'
+
   get 'csv_importer' => 'csv_importer#index'
   post 'csv_importer/import_csv'
 
