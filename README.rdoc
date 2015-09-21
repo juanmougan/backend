@@ -26,3 +26,35 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+== TODO create real docs. Some test data can be created like this
+
+> s = Student.create :id => 1, :first_name => "Juan Manuel Mougan"
+> s = Professor.create :id => 1, :first_name => "Hernán Mariño"
+> sub = Subject.create :id => 1, :name => "Ingeniería de Software II" 
+> sub = Subject.create :id => 2, :name => "Seguridad y Criptografía"
+
+
+insert into enrollments
+values(1, 2010, 1, 1, date('now'), date('now'));
+
+insert into enrollments
+values(2, 2012, 1, 2, date('now'), date('now'));
+
+---- for professor
+insert into assignments
+values(1, 2010, 1, 1, date('now'), date('now'));
+
+insert into assignments
+values(2, 2012, 1, 2, date('now'), date('now'));
+
+
+-- test the model
+select p.name
+from students st
+inner join enrollments e on st.id = e.student_id
+inner join subjects sb on e.subject_id = sb.id
+inner join assignments a on a.subject_id = sb.id
+inner join professors p on a.professor_id = p.id
+where st.id = 1 and e.year = 2010
+
