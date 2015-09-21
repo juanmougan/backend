@@ -1,11 +1,3 @@
-require 'pp'
-
-# TODO create ActiveRecord models and use them. Rails probably provides a context
-require_relative 'parseCsv/model/career'
-require_relative 'parseCsv/model/student'
-require_relative 'parseCsv/model/student_row'
-require_relative 'parseCsv/model/subject'
-
 require_relative 'parseCsv/csv_parser'
 require_relative 'parseCsv/student_hash_creator'
 
@@ -31,22 +23,20 @@ class CsvImporterJob < ActiveJob::Base
 
 	end_time = Time.now
 	puts "\n\n\n\n\n\Parse took: #{end_time - start_time} seconds"
-	# pp student_hash
 
 	# Store the Hash in the DB
 	# TODO refactor - extract to another method
 	ActiveRecord::Base.transaction do
 			student_hash.keys.each do |k|
-			someStudent = student_hash[k]
-			flat_student = FlatStudent.new
-			flat_student.csv_id = someStudent.id
-			flat_student.first_name = someStudent.first_name
-			flat_student.last_name = someStudent.last_name
-			flat_student.file_number = someStudent.file_number
-			flat_student.career = someStudent.career
-			#puts "\n\nObject to be inserted..."
-			#pp flat_student
-			puts flat_student.save!	# TODO error handling here. Raise an exception?
+			some_student = student_hash[k]
+			# TODO add Career, see: https://github.com/juanmougan/backend/issues/1
+			student = Student.new
+			student.csv_id = some_student.id
+			student.first_name = some_student.first_name
+			student.last_name = some_student.last_name
+			student.file_number = some_student.file_number
+			# flat_student.career = some_student.career				# TODO add Career, see: https://github.com/juanmougan/backend/issues/1
+			puts student.save!	# TODO error handling here. Raise an exception?
 		end
 	end
 
