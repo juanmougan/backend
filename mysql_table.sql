@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS `mydb`.`students_raw` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `code` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NULL)
+ENGINE = InnoDB

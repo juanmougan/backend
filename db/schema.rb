@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919181807) do
+ActiveRecord::Schema.define(version: 20150922231945) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "year"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150919181807) do
     t.integer  "career_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "code"
   end
 
   add_index "subjects", ["career_id"], name: "index_subjects_on_career_id"
