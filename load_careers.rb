@@ -1,0 +1,5 @@
+Career.create(:code => 1, :name => 'Civil')
+Career.create(:code => 2, :name => 'Industrial')
+Career.create(:code => 4, :name => 'Ambiental')
+Career.create(:code => 11, :name => 'Informática')
+Career.create(:code => 13, :name => 'Electrónica')
