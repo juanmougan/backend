@@ -6,7 +6,7 @@ INSERT INTO 'tablename' ('column1', 'column2') VALUES
     ('data1', 'data2');
 */
 
-INSERT INTO 'subjects_raw' ('code', 'name') VALUES
+INSERT INTO cei.subjects_raw (code, name) VALUES
 	(254,	'MÉTODOS NUMÉRICOS             '),
 	(334,	'ELECTRÓNICA I                 '),
 	(332,	'MEDICIONES ELECTR.E INSTRUM.  '),

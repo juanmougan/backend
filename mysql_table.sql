@@ -1,5 +1,12 @@
-CREATE TABLE IF NOT EXISTS `mydb`.`students_raw` (
+CREATE TABLE IF NOT EXISTS `cei`.`students_raw` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `code` VARCHAR(45) NULL,
   `name` VARCHAR(45) NULL)
-ENGINE = InnoDB
+ENGINE = MyISAM
+
+CREATE TABLE students_raw (
+    id INT NOT NULL AUTO_INCREMENT,
+    code VARCHAR(45) NULL,
+  	name VARCHAR(45) NULL)
+     PRIMARY KEY (id)
+) ENGINE=MyISAM;
