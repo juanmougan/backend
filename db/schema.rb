@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922231945) do
+ActiveRecord::Schema.define(version: 20150930215827) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "year"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150922231945) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "code"
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -95,6 +96,9 @@ ActiveRecord::Schema.define(version: 20150922231945) do
   end
 
   add_index "subjects", ["career_id"], name: "index_subjects_on_career_id"
+
+# Could not dump table "subjects_raw" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "subscription_lists", force: :cascade do |t|
     t.string   "name"

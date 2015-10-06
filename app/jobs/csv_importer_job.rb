@@ -29,13 +29,17 @@ class CsvImporterJob < ActiveJob::Base
 	ActiveRecord::Base.transaction do
 			student_hash.keys.each do |k|
 			some_student = student_hash[k]
-			# TODO add Career, see: https://github.com/juanmougan/backend/issues/1
 			student = Student.new
 			student.csv_id = some_student.id
 			student.first_name = some_student.first_name
 			student.last_name = some_student.last_name
 			student.file_number = some_student.file_number
+			# Query example: 		Subject.where(name: 'Ingeniería de Software II', id: 1)
+			# Ejemplo para Informática: 	Career.where(code: 11)
 			# flat_student.career = some_student.career				# TODO add Career, see: https://github.com/juanmougan/backend/issues/1
+			# student.career = Career.where(code: some_student.career_code)
+			student.career = Career.find_by code: some_student.career_code
+			# student.career = Career.where(code: some_student.career_code).first
 			puts student.save!	# TODO error handling here. Raise an exception?
 		end
 	end
