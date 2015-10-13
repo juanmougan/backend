@@ -22,7 +22,7 @@ class CsvImporterJob < ActiveJob::Base
 	student_hash = student_hash_creator.create_student_hash
 
 	end_time = Time.now
-	puts "\n\n\n\n\n\Parse took: #{end_time - start_time} seconds"
+	puts "\n\n\nParse took: #{end_time - start_time} seconds\n\n\n"
 
 	store_all_students(student_hash)
   end
@@ -30,7 +30,7 @@ class CsvImporterJob < ActiveJob::Base
   def store_all_students(student_hash)
   	# Store the Hash in the DB
 	ActiveRecord::Base.transaction do
-			student_hash.keys.each do |k|
+		student_hash.keys.each do |k|
 			some_student = student_hash[k]
 			student = Student.new
 			student.csv_id = some_student.id
@@ -39,14 +39,15 @@ class CsvImporterJob < ActiveJob::Base
 			student.file_number = some_student.file_number
 			student.career = Career.find_by code: some_student.career_code
 			student.save!
-			store_enrollments_for_student(student, some_student.subjects) 	# TODO error handling here. Raise an exception?
+			store_enrollments_for_student(student, some_student.raw_enrollments) 	# TODO error handling here. Raise an exception?
 		end
 	end
   end
 
-  def store_enrollments_for_student(student, subjects)
-  	subjects.each do |subject|
-  		Enrollment.create(:year => Date.current.year, :student => student, :subject => subject)
+  def store_enrollments_for_student(student, raw_enrollments)
+  	raw_enrollments.each do |raw_enrollment|
+  		Enrollment.create(:year => Date.current.year, :student => student, :subject => raw_enrollment.subject, 
+  			:professorship => raw_enrollment.professorship, :shift => raw_enrollment.shift)
   	end
   end
 end
