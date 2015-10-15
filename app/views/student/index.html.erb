@@ -9,6 +9,7 @@
       <th>Career</th>
       <th>GCM regid</th>
       <th>Email</th>
+      <th>Enrollments</th>
     </tr>
   </thead>
 
@@ -22,6 +23,7 @@
         <td><%= student.career.code %> - <%= student.career.name %></td>
         <td><%= student.regid %></td>
         <td><%= student.email %></td>
+        <td><%= link_to 'Enrollments', student.enrollments %></td>
       </tr>
     <% end %>
   </tbody>

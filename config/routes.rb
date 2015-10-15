@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  get 'enrollment/index'
+
+  get 'enrollment/show'
+
+  #get 'student' => 'student/index'
   get 'student/index'
 
   get 'flat_student/index'
 
   get 'csv_importer' => 'csv_importer#index'
   post 'csv_importer/import_csv'
+  get 'student/:student_id/enrollments' => 'enrollment/index'
+  # example get 'users/:user_id/challenges' => 'challenges#user_challenges', as: :user_challenges
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
