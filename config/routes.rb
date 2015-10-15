@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'student/index'
+  resources :enrollments
 
   get 'flat_student/index'
 

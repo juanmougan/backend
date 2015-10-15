@@ -99,9 +99,6 @@ ActiveRecord::Schema.define(version: 20151007220647) do
 
   add_index "subjects", ["career_id"], name: "index_subjects_on_career_id"
 
-# Could not dump table "subjects_raw" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
-
   create_table "subscription_lists", force: :cascade do |t|
     t.string   "name"
     t.integer  "student_id"
