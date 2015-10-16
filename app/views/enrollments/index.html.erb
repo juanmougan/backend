@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<!-- TODO need to use the parameter to write the Student's name here, probably need another template -->
+<h1>Listing Enrollments<!-- for <%= @enrollments.first.student.last_name %>, <%= @enrollments.first.student.first_name %>--></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Subject Name</th>
+      <!-- <th>Career</th> -->    <!-- TODO if this is necessary, deal with a nil Career for a Subject -->
+      <th>Professorship</th>
+      <th>Shift</th>
+      <!-- <th colspan="3"></th> -->    <!-- TODO check if these are needed -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enrollments.each do |enrollment| %>
+      <tr>
+        <td><%= enrollment.year %></td>
+        <td><%= enrollment.subject.name %></td>
+        <td><%# <%= enrollment.subject.career.name %></td>
+        <td><%= enrollment.professorship %></td>
+        <td><%= enrollment.shift %></td>
+        <td><%#<%= link_to 'Show', enrollment %></td>
+        <td><%#<%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
+        <td><%#<%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Enrollment', new_enrollment_path %>
