@@ -16,6 +16,7 @@ class StudentsController < ApplicationController
   def show
   end
 
+  # TODO should be deleted?
   def enrollments
     enrollment_ids = (Enrollment.where student_id: params[:id]).ids
     redirect_to :controller => 'enrollments', :action => 'index', :enrollment_ids => enrollment_ids

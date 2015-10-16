@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   end
   get 'student/index'
   #resources :students
+  #get '/students/:id/enrollments', to: 'enrollments#index'
   resources :students do
-    member do
-      get 'enrollments'
-    end
+    #member do
+    #  get 'enrollments'
+    resources :enrollments
+    #end
   end
 
   get 'flat_student/index'
