@@ -4,7 +4,12 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments
   # GET /enrollments.json
   def index
-    @enrollments = Enrollment.all
+    if params[:enrollment_ids]
+      @enrollments = Enrollment.where(id: params[:enrollment_ids])
+      #flash[:notice] = "There are <b>#{@enrollments.count}</b> in this category".html_safe
+    else
+      @enrollments = Enrollment.all
+    end
   end
 
   # GET /enrollments/1
