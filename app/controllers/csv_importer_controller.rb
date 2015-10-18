@@ -7,7 +7,7 @@ class CsvImporterController < ApplicationController
     path = get_file_name(params[:input_file].original_filename, params[:input_file])
   	result = CsvImporterJob.perform_later(path)
 
-    redirect_to '/student/index', notice: "CSV file imported."
+    redirect_to '/students', notice: "CSV file imported."
 
   end
 
