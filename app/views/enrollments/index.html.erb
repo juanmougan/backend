@@ -4,7 +4,7 @@
 <% if false %>
 <h1>Listing Enrollments<!-- <%#for <%= @enrollments.first.student.last_name %>, <%= @enrollments.first.student.first_name %>--></h1>
 <% end %>
-<h1>Listing Enrollments for <%= get_student_full_name_from_enrollments(@enrollments) %></h1>
+<h1>Listing Enrollments <%= get_student_full_name_from_enrollments(@enrollments) %></h1>
 
 <table>
   <thead>
