@@ -4,18 +4,6 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments
   # GET /enrollments.json
   def index
-    if params[:student]
-      puts "\n\n\n\n\nReceived student:\n#{params[:student]}\n\n\n\n\n"
-    else
-      puts "\n\n\n\n\nNO STUDENT FOR YOU!\n#{params}\n\n\n\n\n"
-    end
-    #if params[:enrollment_ids]
-    #  @enrollments = Enrollment.where(id: params[:enrollment_ids])
-    #  #flash[:notice] = "There are <b>#{@enrollments.count}</b> in this category".html_safe
-    #else
-    #  @enrollments = Enrollment.all
-    #end
-
     if params[:student_id]
       @enrollments = Enrollment.where student_id: params[:student_id]
     else
