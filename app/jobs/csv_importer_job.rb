@@ -1,11 +1,3 @@
-require 'pp'
-
-# TODO create ActiveRecord models and use them. Rails probably provides a context
-require_relative 'parseCsv/model/career'
-require_relative 'parseCsv/model/student'
-require_relative 'parseCsv/model/student_row'
-require_relative 'parseCsv/model/subject'
-
 require_relative 'parseCsv/csv_parser'
 require_relative 'parseCsv/student_hash_creator'
 
@@ -30,25 +22,32 @@ class CsvImporterJob < ActiveJob::Base
 	student_hash = student_hash_creator.create_student_hash
 
 	end_time = Time.now
-	puts "\n\n\n\n\n\Parse took: #{end_time - start_time} seconds"
-	# pp student_hash
+	puts "\n\n\nParse took: #{end_time - start_time} seconds\n\n\n"
 
-	# Store the Hash in the DB
-	# TODO refactor - extract to another method
+	store_all_students(student_hash)
+  end
+
+  def store_all_students(student_hash)
+  	# Store the Hash in the DB
 	ActiveRecord::Base.transaction do
-			student_hash.keys.each do |k|
-			someStudent = student_hash[k]
-			flat_student = FlatStudent.new
-			flat_student.csv_id = someStudent.id
-			flat_student.first_name = someStudent.first_name
-			flat_student.last_name = someStudent.last_name
-			flat_student.file_number = someStudent.file_number
-			flat_student.career = someStudent.career
-			#puts "\n\nObject to be inserted..."
-			#pp flat_student
-			puts flat_student.save!	# TODO error handling here. Raise an exception?
+		student_hash.keys.each do |k|
+			some_student = student_hash[k]
+			student = Student.new
+			student.csv_id = some_student.id
+			student.first_name = some_student.first_name
+			student.last_name = some_student.last_name
+			student.file_number = some_student.file_number
+			student.career = Career.find_by code: some_student.career_code
+			student.save!
+			store_enrollments_for_student(student, some_student.raw_enrollments) 	# TODO error handling here. Raise an exception?
 		end
 	end
+  end
 
+  def store_enrollments_for_student(student, raw_enrollments)
+  	raw_enrollments.each do |raw_enrollment|
+  		Enrollment.create(:year => Date.current.year, :student => student, :subject => raw_enrollment.subject, 
+  			:professorship => raw_enrollment.professorship, :shift => raw_enrollment.shift)
+  	end
   end
 end
