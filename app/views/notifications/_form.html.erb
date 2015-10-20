@@ -11,6 +11,20 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br>
+    <%= f.text_area :message %>
+  </div>
+  <div class="field">
+    <%= f.label :subscription_list %><br>
+  </div>
+
+  <%= f.collection_select :subscription_list, SubscriptionList.all, :id, :name, :selected => @notification.subscription_list_id %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
