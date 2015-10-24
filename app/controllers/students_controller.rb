@@ -50,6 +50,18 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
+    puts "\n\n\n\n\n\n\n\n\nThese are the params: #{params.inspect}"
+    puts "\n\n\n\n\nThis is student_params object: #{student_params.inspect}\n\n\nand its class #{student_params.class}"
+    #puts "\n\n\n\n\n\n\n\n\nWill look for SL with ID: #{params[:subscription_lists_id]}"
+    #all_ids = student_params.subscription_lists.collect {|sl| sl.id }
+    #@student.subscription_lists = SubscriptionList.find(all_ids)
+    #@student.subscription_lists = SubscriptionList.where(id: all_ids)
+
+    @student = Student.find(params[:id])
+    @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
+    @student.subscription_lists.destroy_all   # disassociate the already added
+    @student.subscription_lists << @subscription_lists
+
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
@@ -79,6 +91,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params[:student]
+      params.require(:student).permit(:first_name, :last_name, :file_number, subscription_lists: [:id])
     end
 end

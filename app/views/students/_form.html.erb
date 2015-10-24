@@ -11,6 +11,26 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :file_number %><br>
+    <%= f.text_field :file_number %>
+  </div>
+  <div class="field">
+    <%= f.label :subscription_list %><br>
+    <%#= f.collection_select :subscription_list, SubscriptionList.all, :id, :name, :selected => @notification.subscription_list.id %>
+    <%#= f.collection_select(:subscription_lists, SubscriptionList.all, :id, :name, {}, {:multiple => true}) %>
+    <%#= select_tag "organizing_team", options_from_collection_for_select(Organizer.all, 'id', 'name',@event.organizers.map{ |j| j.id }), :multiple => true %>
+    <%= select_tag "subscriptions", options_from_collection_for_select(SubscriptionList.all, 'id', 'name',@student.subscription_lists.map { |j| j.id }), :multiple => true %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
