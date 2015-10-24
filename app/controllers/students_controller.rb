@@ -35,6 +35,8 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
+    @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
+    @student.subscription_lists << @subscription_lists
 
     respond_to do |format|
       if @student.save
@@ -52,12 +54,7 @@ class StudentsController < ApplicationController
   def update
     puts "\n\n\n\n\n\n\n\n\nThese are the params: #{params.inspect}"
     puts "\n\n\n\n\nThis is student_params object: #{student_params.inspect}\n\n\nand its class #{student_params.class}"
-    #puts "\n\n\n\n\n\n\n\n\nWill look for SL with ID: #{params[:subscription_lists_id]}"
-    #all_ids = student_params.subscription_lists.collect {|sl| sl.id }
-    #@student.subscription_lists = SubscriptionList.find(all_ids)
-    #@student.subscription_lists = SubscriptionList.where(id: all_ids)
 
-    @student = Student.find(params[:id])
     @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
     @student.subscription_lists.destroy_all   # disassociate the already added
     @student.subscription_lists << @subscription_lists
