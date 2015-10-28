@@ -21,6 +21,12 @@ class NotificationsController < ApplicationController
   def edit
   end
 
+  # TODO just for test the send
+  def send
+    result = GcmSenderJob.perform_later("SomeRegidHere")
+    self.index
+  end
+
   # POST /notifications
   # POST /notifications.json
   def create
