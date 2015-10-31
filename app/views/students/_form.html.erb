@@ -25,9 +25,6 @@
   </div>
   <div class="field">
     <%= f.label :subscription_list %><br>
-    <%#= f.collection_select :subscription_list, SubscriptionList.all, :id, :name, :selected => @notification.subscription_list.id %>
-    <%#= f.collection_select(:subscription_lists, SubscriptionList.all, :id, :name, {}, {:multiple => true}) %>
-    <%#= select_tag "organizing_team", options_from_collection_for_select(Organizer.all, 'id', 'name',@event.organizers.map{ |j| j.id }), :multiple => true %>
     <%= select_tag "subscriptions", options_from_collection_for_select(SubscriptionList.all, 'id', 'name',@student.subscription_lists.map { |j| j.id }), :multiple => true %>
   </div>
 
