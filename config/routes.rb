@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :notifications
+  post 'notifications/send' => 'notifications#send'   #TODO delete after test
 
   get 'flat_student/index'
 

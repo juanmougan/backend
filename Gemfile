@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# To send the push notifications via GCM
+gem 'gcm'
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # Use ActiveModel has_secure_password
