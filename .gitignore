@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# This is the API key used for GCM
+config/api_key.yml
