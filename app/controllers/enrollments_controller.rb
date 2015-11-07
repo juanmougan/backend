@@ -6,6 +6,7 @@ class EnrollmentsController < ApplicationController
   def index
     if params[:student_id]
       @enrollments = Enrollment.where student_id: params[:student_id]
+      @student = Student.find params[:student_id]
     else
       @enrollments = Enrollment.all
     end
