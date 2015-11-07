@@ -26,7 +26,7 @@
 <table>
   <thead>
     <tr>
-      <th>CSV ID</th>
+      <!-- <th>CSV ID</th> -->
       <th>First Name</th>
       <th>Last Name</th>
       <th>File Number</th>
@@ -41,12 +41,12 @@
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.csv_id %></td>
+        <!-- <td><%= student.csv_id %></td> -->
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.file_number %></td>
         <td><%= get_career_data_nil_safe(student.career) %></td>
-        <td><%= student.regid %></td>
+        <td><%= retrieve_regid_status(student.regid) %></td>
         <td><%= student.email %></td>
         <td><%= link_to "Enrollments", [student, :enrollments] %></td>
         <td><%= link_to 'Show', student %></td>

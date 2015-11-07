@@ -25,6 +25,7 @@ class NotificationsController < ApplicationController
   # POST /notifications.json
   def create
     @notification = Notification.new(notification_params)
+    @notification.subscription_list = SubscriptionList.find(params[:subscription_list])
 
     respond_to do |format|
       if @notification.save
@@ -69,6 +70,6 @@ class NotificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params[:notification].permit(:title, :message, :subscription_list_id)
+      params[:notification].permit(:title, :message, :subscription_list)
     end
 end

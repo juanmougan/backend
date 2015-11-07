@@ -17,12 +17,13 @@ class GcmSenderJob < ActiveJob::Base
   def perform(*args)
     puts "\n\n\n\n\nArgs received - class: #{args.class}"
     pp args
-    notification = args.shift.shift
+    notification = args.shift
     puts "\n\n\n\n\nNotification received - class: #{notification.class}"
     pp notification
-    puts "\n\n\n\n\nArgs arew now - class: #{args.class}"
-    pp args
-  	check_arguments(args)
+    regids = args.shift    #asignar esto a una var
+    puts "\n\n\n\n\nregids arew now - class: #{regids.class}"
+    pp regids
+  	check_arguments(regids)
     api_key = YAML.load_file("#{RAILS_ROOT}/config/api_key.yml")
     gcm = GCM.new(api_key)
     message = { 
@@ -32,8 +33,8 @@ class GcmSenderJob < ActiveJob::Base
 	    }
     }
     # TODO add support for more than 1000 receivers
-    puts "\n\n\n\nAbout to send to: #{args}\n\n\n\n"
-    response = gcm.send(args, message)
+    puts "\n\n\n\nAbout to send to: #{regids}\n\n\n\n"
+    response = gcm.send(regids, message)
     puts "\n\n\n\nReceived this from GCM:\n"
     pp response  
   end
