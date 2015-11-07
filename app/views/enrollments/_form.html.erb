@@ -10,6 +10,23 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= select_tag "subject", options_from_collection_for_select(Subject.all, 'id', 'name') %>
+    <%#= f.hidden_field "student_for_enrollment", :value => @enrollment.student.id%>
+    <%= hidden_field_tag :student_for_enrollment, @enrollment.student.id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :professorship %><br>
+    <%= f.text_field :professorship %>
+  </div>
+
+  <div class="field">
+    <%= f.label :shift %><br>
+    <%= f.text_field :shift %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
