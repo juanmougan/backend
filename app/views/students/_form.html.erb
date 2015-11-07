@@ -24,6 +24,10 @@
     <%= f.text_field :file_number %>
   </div>
   <div class="field">
+    <%= f.label :career %><br>
+    <%= select_tag "career", options_from_collection_for_select(Career.all, 'id', 'name', get_career_id_nil_safe) %>
+  </div>
+  <div class="field">
     <%= f.label :subscription_list %><br>
     <%= select_tag "subscriptions", options_from_collection_for_select(SubscriptionList.all, 'id', 'name',@student.subscription_lists.map { |j| j.id }), :multiple => true %>
   </div>

@@ -35,6 +35,7 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
+    @student.career = Career.find(params[:career])
     @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
     @student.subscription_lists << @subscription_lists
 
@@ -55,6 +56,7 @@ class StudentsController < ApplicationController
     puts "\n\n\n\n\n\n\n\n\nThese are the params: #{params.inspect}"
     puts "\n\n\n\n\nThis is student_params object: #{student_params.inspect}\n\n\nand its class #{student_params.class}"
 
+    @student.career = Career.find(params[:career])
     @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
     @student.subscription_lists.destroy_all   # disassociate the already added
     @student.subscription_lists << @subscription_lists
@@ -88,6 +90,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :file_number, subscription_lists: [:id])
+      params.require(:student).permit(:first_name, :last_name, :file_number, career: [:id], subscription_lists: [:id])
     end
 end
