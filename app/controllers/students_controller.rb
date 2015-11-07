@@ -53,8 +53,6 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-    puts "\n\n\n\n\n\n\n\n\nThese are the params: #{params.inspect}"
-    puts "\n\n\n\n\nThis is student_params object: #{student_params.inspect}\n\n\nand its class #{student_params.class}"
 
     @student.career = Career.find(params[:career])
     @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
