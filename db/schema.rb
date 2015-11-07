@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007220647) do
+ActiveRecord::Schema.define(version: 20151020221124) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "year"
@@ -89,6 +89,14 @@ ActiveRecord::Schema.define(version: 20151007220647) do
 
   add_index "students", ["career_id"], name: "index_students_on_career_id"
 
+  create_table "students_subscription_lists", id: false, force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "subscription_list_id"
+  end
+
+  add_index "students_subscription_lists", ["student_id"], name: "index_students_subscription_lists_on_student_id"
+  add_index "students_subscription_lists", ["subscription_list_id"], name: "index_students_subscription_lists_on_subscription_list_id"
+
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.integer  "career_id"
@@ -101,13 +109,9 @@ ActiveRecord::Schema.define(version: 20151007220647) do
 
   create_table "subscription_lists", force: :cascade do |t|
     t.string   "name"
-    t.integer  "student_id"
-    t.integer  "notification_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
   end
-
-  add_index "subscription_lists", ["notification_id"], name: "index_subscription_lists_on_notification_id"
-  add_index "subscription_lists", ["student_id"], name: "index_subscription_lists_on_student_id"
 
 end

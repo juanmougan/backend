@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources "subscriptionlists", :controller => :subscription_lists, :as => :subscription_lists
   resources :enrollments do
     member do
       get 'enrollments_for_student'
@@ -12,7 +13,11 @@ Rails.application.routes.draw do
     #  get 'enrollments'
     resources :enrollments
     #end
+    resources "subscriptionlists"
   end
+
+  resources :notifications
+  post 'notifications/send' => 'notifications#send'   #TODO delete after test
 
   get 'flat_student/index'
 

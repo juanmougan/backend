@@ -1,4 +1,5 @@
 class SubscriptionList < ActiveRecord::Base
-  belongs_to :student
-  belongs_to :notification
+  #belongs_to :student
+  has_and_belongs_to_many :students
+  has_one :notification
 end

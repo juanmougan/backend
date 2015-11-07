@@ -35,6 +35,9 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
+    @student.career = Career.find(params[:career])
+    @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
+    @student.subscription_lists << @subscription_lists
 
     respond_to do |format|
       if @student.save
@@ -50,6 +53,12 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
+
+    @student.career = Career.find(params[:career])
+    @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
+    @student.subscription_lists.destroy_all   # disassociate the already added
+    @student.subscription_lists << @subscription_lists
+
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
@@ -79,6 +88,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params[:student]
+      params.require(:student).permit(:first_name, :last_name, :file_number, career: [:id], subscription_lists: [:id])
     end
 end
