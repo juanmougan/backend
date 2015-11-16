@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+  # This is for exposing the API needed by the client applications
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :subscription_lists
+    end
+  end
+
   resources "subscriptionlists", :controller => :subscription_lists, :as => :subscription_lists
   resources :enrollments do
     member do
