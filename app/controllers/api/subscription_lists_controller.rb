@@ -7,4 +7,7 @@ class Api::V1::SubscriptionListsController < ApplicationController
     respond_with SubscriptionList.all
   end
 
+  def show
+  end
+
 end
