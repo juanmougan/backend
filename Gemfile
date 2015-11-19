@@ -28,6 +28,9 @@ gem 'gcm'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+# To handle JSON responses
+gem 'responders', '~> 2.1.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
