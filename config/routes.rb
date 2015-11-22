@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :subscription_lists
       resources :notifications
+      resources :students
     end
   end
 
