@@ -15,7 +15,7 @@
       <tr>
         <td><%= link_to 'Ver', student %></td>
         <td><%= link_to 'Editar', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+        <td><%= link_to 'Borrar', student, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -51,7 +51,7 @@
         <td><%= link_to 'Cursadas', [student, :enrollments] %></td>
         <td><%= link_to 'Ver', student %></td>
         <td><%= link_to 'Editar', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+        <td><%= link_to 'Borrar', student, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
