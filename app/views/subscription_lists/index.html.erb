@@ -19,7 +19,7 @@
         <td><%= subscription_list.name %></td>
         <td><%= subscription_list.description %></td>
         <td><%= link_to 'Ver', subscription_list %></td>
-        <td><%= link_to 'Edit', edit_subscription_list_path(subscription_list) %></td>
+        <td><%= link_to 'Editar', edit_subscription_list_path(subscription_list) %></td>
         <td><%= link_to 'Destroy', subscription_list, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
