@@ -12,23 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :first_name %><br>
+    <%= f.label "Nombre" %><br>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br>
+    <%= f.label "Apellido" %><br>
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :file_number %><br>
+    <%= f.label "Número de Registro" %><br>
     <%= f.text_field :file_number %>
   </div>
   <div class="field">
-    <%= f.label :career %><br>
+    <%= f.label "Carrera" %><br>
     <%= select_tag "career", options_from_collection_for_select(Career.all, 'id', 'name', get_career_id_nil_safe) %>
   </div>
   <div class="field">
-    <%= f.label :subscription_list %><br>
+    <%= f.label "Lista de Entrega" %><br>
     <%= select_tag "subscriptions", options_from_collection_for_select(SubscriptionList.all, 'id', 'name',@student.subscription_lists.map { |j| j.id }), :multiple => true %>
   </div>
 

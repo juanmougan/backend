@@ -11,7 +11,7 @@ module StudentsHelper
     if regid.to_s == ''
       "NO"
     else
-    "YES"
+    "SI"
     end
   end
 end

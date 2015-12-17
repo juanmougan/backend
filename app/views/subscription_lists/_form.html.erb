@@ -12,20 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label "Nombre" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label "Descripción" %><br>
     <%= f.text_area :description %>
   </div>
   <div id="field" style="width: 50%;">
     <div id="left" style="float: left; width: 50%;"> 
-        <%= label_tag(:rule_career, "By career") %>
+        <%= label_tag(:rule_career, "Por carrera") %>
         <%= radio_button_tag(:rule, "career") %><br>
-        <%= label_tag(:rule_year, "By year") %>
-        <%= radio_button_tag(:rule, "year") %><br>
-        <%= label_tag(:rule_subject, "By subject") %>
+        <!-- <%#= label_tag(:rule_year, "By year") %> -->
+        <!-- <%#= radio_button_tag(:rule, "year") %><br> -->
+        <%= label_tag(:rule_subject, "Por materia") %>
         <%= radio_button_tag(:rule, "subject") %><br>
     </div>
     <div id="right" style="float: left; width: 50%;">
@@ -44,7 +44,8 @@
       <%= select_tag "careers", options_from_collection_for_select(Career.all, 'id', 'name') %>
       <br>
       
-      <!-- This should be hardcoded, since there's no "year" table -->
+      <!-- TODO re-add this when some information about a subject's year becomes available -->
+      <!-- 
       <select>
         <option value="first">First</option>
         <option value="second">Second</option>
@@ -53,6 +54,7 @@
         <option value="fifth">Fifth</option>
       </select>
       <br>
+    -->
 
       <!-- TODO shouldn't be hardcoded -->
       <!--
