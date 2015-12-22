@@ -42,7 +42,7 @@ class CsvImporterJob < ActiveJob::Base
 			some_student = student_hash[k]
 			student = Student.new
 			student.csv_id = some_student.id
-			student.first_name = some_student.first_name
+			student.first_name = some_student.first_name.strip!
 			student.last_name = some_student.last_name
 			student.file_number = some_student.file_number
 			student.career = Career.find_by code: some_student.career_code
