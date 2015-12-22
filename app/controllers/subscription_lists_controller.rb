@@ -36,7 +36,7 @@ class SubscriptionListsController < ApplicationController
 
     respond_to do |format|
       if @subscription_list.save
-        format.html { redirect_to @subscription_list, notice: 'Subscription list was successfully created.' }
+        format.html { redirect_to @subscription_list, notice: 'La Lista de Entrega se creó exitosamente.' }
         format.json { render :show, status: :created, location: @subscription_list }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class SubscriptionListsController < ApplicationController
     respond_to do |format|
       #if @subscription_list.update(subscription_list_params)
       if @subscription_list.update(subscription_list_params[:subscription_list])
-        format.html { redirect_to @subscription_list, notice: 'Subscription list was successfully updated.' }
+        format.html { redirect_to @subscription_list, notice: 'La Lista de Entrega se actualizó exitosamente.' }
         format.json { render :show, status: :ok, location: @subscription_list }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class SubscriptionListsController < ApplicationController
   def destroy
     @subscription_list.destroy
     respond_to do |format|
-      format.html { redirect_to subscription_lists_url, notice: 'Subscription list was successfully destroyed.' }
+      format.html { redirect_to subscription_lists_url, notice: 'La Lista de Entrega se borró exitosamente.' }
       format.json { head :no_content }
     end
   end

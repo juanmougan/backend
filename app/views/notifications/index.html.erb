@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Notifications</h1>
+<h1>Listado de Notificaciones</h1>
 
 <table>
   <thead>
     <tr>
       <th>ID</th>
-      <th>Title</th>
-      <th>Message</th>
+      <th>Título</th>
+      <th>Mensaje</th>
       <!-- <th>Sent to</th> -->
       <th colspan="3"></th>
     </tr>
@@ -20,9 +20,9 @@
         <td><%= notification.title %></td>
         <td><%= notification.message %></td>
         <td><%# <%= notification.subscription_list.name %></td>
-        <td><%= link_to 'Show', notification %></td>
-        <td><%= link_to 'Edit', edit_notification_path(notification) %></td>
-        <td><%= link_to 'Destroy', notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', notification %></td>
+        <td><%= link_to 'Editar', edit_notification_path(notification) %></td>
+        <td><%= link_to 'Borrar', notification, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Notification', new_notification_path %>
+<%= link_to 'Nueva Notificación', new_notification_path %>

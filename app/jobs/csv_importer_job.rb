@@ -24,7 +24,15 @@ class CsvImporterJob < ActiveJob::Base
 	end_time = Time.now
 	puts "\n\n\nParse took: #{end_time - start_time} seconds\n\n\n"
 
+	destroy_previous_data
 	store_all_students(student_hash)
+  end
+
+  def destroy_previous_data
+  	Enrollment.destroy_all
+	raise RuntimeError, "Failed to destroy all Enrollments" unless Enrollment.all.size == 0
+	Student.destroy_all
+	raise RuntimeError, "Failed to destroy all Students" unless Student.all.size == 0
   end
 
   def store_all_students(student_hash)
@@ -34,7 +42,7 @@ class CsvImporterJob < ActiveJob::Base
 			some_student = student_hash[k]
 			student = Student.new
 			student.csv_id = some_student.id
-			student.first_name = some_student.first_name
+			student.first_name = some_student.first_name.strip!
 			student.last_name = some_student.last_name
 			student.file_number = some_student.file_number
 			student.career = Career.find_by code: some_student.career_code

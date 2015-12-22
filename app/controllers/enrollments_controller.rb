@@ -41,7 +41,7 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to '/students', notice: 'Enrollment was successfully created.' }
+        format.html { redirect_to '/students', notice: 'La Cursada se creó exitosamente.' }
         format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class EnrollmentsController < ApplicationController
     @enrollment.student =  @student_for_enrollment
     respond_to do |format|
       if @enrollment.update(enrollment_params)
-        format.html { redirect_to '/students', notice: 'Enrollment was successfully updated.' }
+        format.html { redirect_to '/students', notice: 'La Cursada se actualizó exitosamente.' }
         format.json { render :show, status: :ok, location: @enrollment }
       else
         format.html { render :edit }
@@ -71,7 +71,7 @@ class EnrollmentsController < ApplicationController
   def destroy
     @enrollment.destroy
     respond_to do |format|
-      format.html { redirect_to '/students', notice: 'Enrollment was successfully destroyed.' }
+      format.html { redirect_to '/students', notice: 'La Cursada se borró exitosamente.' }
       format.json { head :no_content }
     end
   end

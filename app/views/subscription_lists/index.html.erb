@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Subscription Lists</h1>
+<h1>Listado de Listas de Entrega</h1>
 
 <table>
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
-      <th>Description</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,9 +18,9 @@
         <td><%= subscription_list.id %></td>
         <td><%= subscription_list.name %></td>
         <td><%= subscription_list.description %></td>
-        <td><%= link_to 'Show', subscription_list %></td>
-        <td><%= link_to 'Edit', edit_subscription_list_path(subscription_list) %></td>
-        <td><%= link_to 'Destroy', subscription_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', subscription_list %></td>
+        <td><%= link_to 'Editar', edit_subscription_list_path(subscription_list) %></td>
+        <td><%= link_to 'Borrar', subscription_list, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Subscription list', new_subscription_list_path %>
+<%= link_to 'Nueva Lista de Entrega', new_subscription_list_path %>

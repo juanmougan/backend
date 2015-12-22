@@ -1,12 +1,12 @@
-<h1>Listing Students</h1>
+<h1>Listado de Alumnos</h1>
 <table>
   <thead>
     <tr>
-      <th>CSV ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>File Number</th>
-      <th>Career</th>
+      <!-- <th>CSV ID</th> -->
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Número de Registro</th>
+      <th>Carrera</th>
       <th>GCM regid</th>
       <th>Email</th>
     </tr>
@@ -15,7 +15,7 @@
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.csv_id %></td>
+        <!-- <td><%= student.csv_id %></td> -->
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.file_number %></td>

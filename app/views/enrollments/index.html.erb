@@ -2,18 +2,18 @@
 
 <!-- TODO need to use the parameter to write the Student's name here, probably need another template -->
 <% if false %>
-<h1>Listing Enrollments<!-- <%#for <%= @enrollments.first.student.last_name %>, <%= @enrollments.first.student.first_name %>--></h1>
+<h1>Listado de Cursadas<!-- <%#for <%= @enrollments.first.student.last_name %>, <%= @enrollments.first.student.first_name %>--></h1>
 <% end %>
-<h1>Listing Enrollments <%= get_student_full_name(@student) %></h1>
+<h1>Listado de Cursadas <%= get_student_full_name(@student) %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Year</th>
-      <th>Subject Name</th>
-      <!-- <th>Career</th> -->    <!-- TODO if this is necessary, deal with a nil Career for a Subject -->
-      <th>Professorship</th>
-      <th>Shift</th>
+      <th>Año</th>
+      <th>Nombre de la Materia</th>
+      <!-- <th>Carrera</th> -->    <!-- TODO if this is necessary, deal with a nil Career for a Subject -->
+      <th>Cátedra</th>
+      <th>Turno</th>
       <th></th>
     </tr>
   </thead>
@@ -26,7 +26,7 @@
         <td><%# <%= enrollment.subject.career.name %></td>
         <td><%= enrollment.professorship %></td>
         <td><%= enrollment.shift %></td>
-        <td><%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Borrar', enrollment, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,4 +35,4 @@
 <br>
 
 <%#= link_to 'New Enrollment', new_enrollment_path %>
-<%= link_to "New Enrollment", new_enrollment_path(:student => @student.id) %>
+<%= link_to "Nueva Cursada", new_enrollment_path(:student => @student.id) %>
