@@ -22,25 +22,14 @@
   <div id="field" style="width: 50%;">
     <div id="left" style="float: left; width: 50%;"> 
         <%= label_tag(:rule_career, "Por carrera") %>
-        <%= radio_button_tag(:rule, "career") %><br>
+        <%= radio_button_tag(:rule, "career", true) %><br>
         <!-- <%#= label_tag(:rule_year, "By year") %> -->
         <!-- <%#= radio_button_tag(:rule, "year") %><br> -->
         <%= label_tag(:rule_subject, "Por materia") %>
-        <%= radio_button_tag(:rule, "subject") %><br>
+        <%= radio_button_tag(:rule, "subject", false) %><br>
     </div>
     <div id="right" style="float: left; width: 50%;">
-      <!-- TODO shouldn't be hardcoded -->
-      <!--
-      <select>
-        <option value="civil">Civil</option>
-        <option value="industrial">Industrial</option>
-        <option value="informatica">Informática</option>
-        <option value="ambiental">Ambiental</option>
-      </select>
-    -->
-    <% if false %>
-      <%= select_tag "careers", options_from_collection_for_select(Career.all, 'id', 'name', @student.subscription_lists.map { |j| j.id }) %>
-    <% end %>
+
       <%= select_tag "careers", options_from_collection_for_select(Career.all, 'id', 'name') %>
       <br>
       
@@ -56,15 +45,6 @@
       <br>
     -->
 
-      <!-- TODO shouldn't be hardcoded -->
-      <!--
-      <select>
-        <option value="algebra">Álgebra</option>
-        <option value="calculo">Cálculo</option>
-        <option value="fisica">Física</option>
-        <option value="redes">Redes</option>
-      </select>
-      -->
         <%= select_tag "subjects", options_from_collection_for_select(Subject.all, 'id', 'name_with_code') %>
 
       <br>
