@@ -48,8 +48,22 @@ class CsvImporterJob < ActiveJob::Base
 			student.career = Career.find_by code: some_student.career_code
 			student.save!
 			store_enrollments_for_student(student, some_student.raw_enrollments) 	# TODO error handling here. Raise an exception?
+			update_existing_career_subscription_list(student)
+			update_existing_subjects_subscription_lists(student, some_student.raw_enrollments)
 		end
 	end
+  end
+
+  # Will asume at most only one SubscriptionList for each Career
+  def update_existing_career_subscription_list(student)
+  	subscription_list = SubscriptionList.find_by_career(student.career.code)
+  	subscription_list.students << student
+  end
+
+  def update_existing_subjects_subscription_lists(student, raw_enrollments)
+  	# TODO need to collect all Subjects from the raw enrollments
+  	# subscription_lists = SubscriptionList.find_by_subject_name()
+
   end
 
   def store_enrollments_for_student(student, raw_enrollments)
