@@ -73,27 +73,15 @@ class SubscriptionListsController < ApplicationController
 
   private
     def get_students_from_rule_param
-      #subscription_list_params
-      #"rule"=>"subject", "careers"=>"1", "subjects"=>"15"
-      puts "\n\n\n\n\params[:rule]: #{params[:rule].inspect}\n\n\nand its class #{params[:rule].class}\n\n\n\n"
 
       case params[:rule]
         when "career"
-          #puts "\n\n\n\n\nBy career: #{params[:career]}\nand its class #{params[:career]}\n\n\n\n"
-          puts "\n\n\n\n\nBy career: #{params[:careers]}\nand its class #{params[:careers]}\n\n\n\n"
-          puts "\n\n\n\nStudents found by career: #{Student.where(:career_id => params[:careers])}\n\n\n\n"
-          return Student.where(:career_id => params[:careers])
+          return Student.get_students_by_career_id(params[:careers])
         when "year"
           # TODO Subjects don't have a year like "1ro, 2do" or so. See https://github.com/juanmougan/backend/issues/10
           raise RuntimeError, 'Still not implemented'
         when "subject"
-          enrollments = Enrollment.where(:subject_id => params[:subjects])
-          puts "\n\n\n\nenrollments: #{enrollments.inspect}\n\n\nand its class #{enrollments.class}\n\n\n\n"
-          student_ids = enrollments.map { |e| e.student_id }
-          puts "\n\n\n\n\nstudent_ids: #{student_ids.inspect}\n\n\nand its class #{student_ids.class}\n\n\n\n"
-          puts "\n\n\n\n\nArray's first element: #{student_ids[0].inspect}\n\n\nand its class #{student_ids[0].class}\n\n\n\n"
-          #return Student.find_by_id(student_ids)      #find throws an exception if any record is not found
-          return Student.where :id => student_ids
+          return Student.get_students_by_list_of_subject_id(params[:subjects])
         end
         else
           # TODO handle default
