@@ -6,18 +6,27 @@ class SubscriptionList < ActiveRecord::Base
   # Finds a SubscriptionList by a given Career code.
   # Assumes only one SubscriptionList per Career.
   def self.find_by_career_code(career_code)
-  	# TODO needs to be implemented
-  	sl = SubscriptionList.first
-  	puts "\n\n\n\n\n\n\nfind_by_career_code\n\n\n\n\n\n\n\n"
-  	puts "\n\n\n\n\n\n#{sl}\n\n\n\n\n\n\n\n"
-  	puts "\n\n\n\n\n\n#{sl.students}\n\n\n\n\n\n\n\n"
-  	puts "\n\n\n\n\n\n#{sl.students.class}\n\n\n\n\n\n\n\n"
-  	sl.students.each{|s| puts s}
-  	return sl
+    sql = "select sl.*, c.code " +
+      "from subscription_lists sl " + 
+      "inner join students_subscription_lists ssl on sl.id = ssl.subscription_list_id " + 
+      "inner join students s on ssl.student_id = s.id " + 
+      "inner join careers c on s.career_id = c.id " + 
+      "where c.code = #{career_code} " +     # TODO how about SQL injection here?
+      "group by sl.id "
+  	return SubscriptionList.find_by_sql(sql)
   end
 
-  def self.find_by_subject_name(subject_name)
-  	# TODO needs to be implemented
+  # Finds a list of SubscriptionList by a given Subject code.
+  def self.find_by_subject_code(subject_code)
+  	sql = "select sl.*, sub.code " + 
+    "from subscription_lists sl " + 
+    "inner join students_subscription_lists ssl on sl.id = ssl.subscription_list_id " + 
+    "inner join students s on ssl.student_id = s.id " + 
+    "inner join enrollments e on s.id = e.student_id " + 
+    "inner join subjects sub on e.subject_id = sub.id " + 
+    "where sub.code = #{subject_code} " + 
+    "group by sl.id "
+    return SubscriptionList.find_by_sql(sql)
   end
 
 end
