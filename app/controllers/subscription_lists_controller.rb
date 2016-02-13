@@ -32,6 +32,7 @@ class SubscriptionListsController < ApplicationController
     # TODO add a Where according to the rule
     # e.g. @subscription_lists = SubscriptionList.where(:id => params[:subscriptions])
     @subscription_list.students = get_students_from_rule_param
+    set_proper_rule_type_from_params(@subscription_list)
     puts "\n\n\n\n\n@subscription_list.students: #{@subscription_list.students.inspect}\n\n\nand its class #{@subscription_list.students.class}\n\n\n\n"
 
     respond_to do |format|
@@ -49,6 +50,7 @@ class SubscriptionListsController < ApplicationController
   # PATCH/PUT /subscription_lists/1.json
   def update
     @subscription_list.students = get_students_from_rule_param
+    set_proper_rule_type_from_params(@subscription_list)
     respond_to do |format|
       #if @subscription_list.update(subscription_list_params)
       if @subscription_list.update(subscription_list_params[:subscription_list])
@@ -72,6 +74,20 @@ class SubscriptionListsController < ApplicationController
   end
 
   private
+    
+    def set_proper_rule_type_from_params(subscription_list)
+
+      case params[:rule]
+        when "career"
+          subscription_list.rule_type = "by_career"
+        when "year"
+          # TODO Subjects don't have a year like "1ro, 2do" or so. See https://github.com/juanmougan/backend/issues/10
+          raise RuntimeError, 'Still not implemented'
+        when "subject"
+          subscription_list.rule_type = "by_subject"
+        end
+    end
+
     def get_students_from_rule_param
 
       case params[:rule]

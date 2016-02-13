@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020221124) do
+ActiveRecord::Schema.define(version: 20160211191900) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "year"
@@ -109,9 +109,10 @@ ActiveRecord::Schema.define(version: 20151020221124) do
 
   create_table "subscription_lists", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "description"
+    t.integer  "rule_type",   default: 0, null: false
   end
 
 end
