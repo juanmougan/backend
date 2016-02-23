@@ -2,22 +2,14 @@
 
 one:
   csv_id: MyString
-  : 1
   first_name: MyString
-  : MyString
   last_name: MyString
   file_number: MyString
-  : MyString
   career: MyString
-  : MyString
 
 two:
   csv_id: MyString
-  : 1
   first_name: MyString
-  : MyString
   last_name: MyString
   file_number: MyString
-  : MyString
   career: MyString
-  : MyString

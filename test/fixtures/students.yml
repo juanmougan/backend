@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  csv_id: MyString
-  first_name: MyString
-  last_name: MyString
-  file_number: MyString
-  career_id: 
-  regid: MyString
-  email: MyString
+info_algebra_1:
+  csv_id: 1
+  first_name: Info
+  last_name: Test 001
+  file_number: "00000001"
+  career_id: 4
+  regid: 12345678
+  email: info@test.com
 
 two:
-  csv_id: MyString
-  first_name: MyString
-  last_name: MyString
-  file_number: MyString
-  career_id: 
-  regid: MyString
-  email: MyString
+  csv_id: 2
+  first_name: Industrial
+  last_name: Test 001
+  file_number: "00000002"
+  career_id: 2
+  regid: 87654321
+  email: ind@test.com

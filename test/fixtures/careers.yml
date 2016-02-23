@@ -1,7 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+civ:
+  id: 1
+  name: Civil
+  code: 1
 
-two:
-  name: MyString
+ind:
+  id: 2
+  name: Industrial
+  code: 2
+
+amb:
+  id: 3
+  name: Ambiental
+  code: 4
+
+inf:
+  id: 4
+  name: Informática
+  code: 11
+
+ele:
+  id: 5
+  name: Electrónica
+  code: 13

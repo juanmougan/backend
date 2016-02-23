@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  student_id: 
-  notification_id: 
+info:
+  name: Solo Informatica
+  description: Solo alumnos de informatica
+  rule_type: 1
 
-two:
-  name: MyString
-  student_id: 
-  notification_id: 
+qca:
+  name: Quimica General
+  description: Alumnos cursando Quimica General
+  rule_type: 2
+
+ind:
+  name: Los de Industrial
+  description: Alumnos de Ing. Industrial
+  rule_type: 1
