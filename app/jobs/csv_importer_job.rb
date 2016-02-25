@@ -13,6 +13,7 @@ class CsvImporterJob < ActiveJob::Base
 
 	@career_lists_hash = Hash.new
   	@subject_lists_hash = Hash.new
+  	@students_regids = Hash.new
 
 	puts "\n\n\n\n\n\nStarting CSV parse..."
 	start_time = Time.now
@@ -28,10 +29,19 @@ class CsvImporterJob < ActiveJob::Base
 	end_time = Time.now
 	puts "\n\n\nParse took: #{end_time - start_time} seconds\n\n\n"
 
+	# First, save Student data
+	save_in_memory_students_regids
 	save_in_memory_previous_students
+	puts "\n\n\n\n\nRegids: #{@students_regids}\n\n\n\n\n"
+	# Then, re-create all Students TODO re-add regids!
 	destroy_previous_data
 	store_all_students(student_hash)
 	add_students_again_to_subscription_lists
+  end
+
+  def save_in_memory_students_regids
+  	all_students = Student.all
+  	all_students.each{ |s| @students_regids[s.file_number] = s.regid }
   end
 
   def add_students_again_to_subscription_lists
