@@ -140,6 +140,7 @@ class CsvImporterJob < ActiveJob::Base
 			student.first_name = some_student.first_name.strip!
 			student.last_name = some_student.last_name
 			student.file_number = some_student.file_number
+      student.regid = @students_regids[student.file_number]     # Restore the Student regid
 			student.career = Career.find_by code: some_student.career_code
 			student.save!
 			store_enrollments_for_student(student, some_student.raw_enrollments) 	# TODO error handling here. Raise an exception?
