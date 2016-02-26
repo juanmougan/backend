@@ -114,10 +114,14 @@ class CsvImporterJob < ActiveJob::Base
   end
 
   def destroy_previous_data
-    Enrollment.destroy_all
+    ActiveRecord::Base.transaction do
+      Enrollment.destroy_all
+    end
     raise RuntimeError, "Failed to destroy all Enrollments" unless Enrollment.all.size == 0
     remove_students_for_each_subscription_list
-    Student.destroy_all
+    ActiveRecord::Base.transaction do
+      Student.destroy_all
+    end
     raise RuntimeError, "Failed to destroy all Students" unless Student.all.size == 0
   end
 
